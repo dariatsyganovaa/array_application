@@ -1,57 +1,57 @@
 #pragma once
 
-//выделение памяти
+//РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
 void clear_memory(int* mass);
 int* set_memory(int size);
 int* reset_memory(int* old_mass, int old_size, int new_size);
 int* reset_memory_for_delete(int* old_mass, int* old_size, int new_size, int* deleted_count);
 
-//заполнение массива
+//Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР°
 void default_init(int* mass, int size);
 void user_init(int* mass, int size);
 void rand_init(int* mass, int size, int min, int max);
 
-//вставка в
+//РІСЃС‚Р°РІРєР° РІ
 
-//начало массива
-void push_front_elem(int* mass, int size, int value); //вставка одного элемента
-void push_front_elems(int* mass, int size, int* values, int count);  //вставка нескольких элементов
+//РЅР°С‡Р°Р»Рѕ РјР°СЃСЃРёРІР°
+void push_front_elem(int* mass, int size, int value); //РІСЃС‚Р°РІРєР° РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void push_front_elems(int* mass, int size, int* values, int count);  //РІСЃС‚Р°РІРєР° РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//конец массива
-void push_back_elem(int* mass, int size, int value); //вставка одного элемента
-void push_back_elems(int* mass, int size, int* values, int count);  //вставка нескольких элементов
+//РєРѕРЅРµС† РјР°СЃСЃРёРІР°
+void push_back_elem(int* mass, int size, int value); //РІСЃС‚Р°РІРєР° РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void push_back_elems(int* mass, int size, int* values, int count);  //РІСЃС‚Р°РІРєР° РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//середина массива
-void insert_elem(int* mass, int size, int value, int pos); //вставка одного элемента
-void insert_elems(int* mass, int size, int pos, int* values, int count); //вставка нескольких элементов
+//СЃРµСЂРµРґРёРЅР° РјР°СЃСЃРёРІР°
+void insert_elem(int* mass, int size, int value, int pos); //РІСЃС‚Р°РІРєР° РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void insert_elems(int* mass, int size, int pos, int* values, int count); //РІСЃС‚Р°РІРєР° РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//поиск
+//РїРѕРёСЃРє
 
-void found_first_elem(int* mass, int size, int value, int* found); //поиск первого элемента
-void found_last_elem(int* mass, int size, int value, int* found); //поиск последнего элемента
-void found_elem(int* mass, int size, int value, int* found); //поиск всех элементов (размер массива будет находиться в первой нулевой ячейке)
-void found_elems(int* mass, int size, int* values, int values_count, int* found); //поиск нескольких элементов
+void found_first_elem(int* mass, int size, int value, int* found); //РїРѕРёСЃРє РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void found_last_elem(int* mass, int size, int value, int* found); //РїРѕРёСЃРє РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
+void found_elem(int* mass, int size, int value, int* found); //РїРѕРёСЃРє РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ (СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° Р±СѓРґРµС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РїРµСЂРІРѕР№ РЅСѓР»РµРІРѕР№ СЏС‡РµР№РєРµ)
+void found_elems(int* mass, int size, int* values, int values_count, int* found); //РїРѕРёСЃРє РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//удаление
+//СѓРґР°Р»РµРЅРёРµ
 
-//начало массива
-void pop_front_elem(int* mass, int size); //удаление одного элемента
-void pop_front_elems(int* mass, int size, int count);  //удаление нескольких элементов
+//РЅР°С‡Р°Р»Рѕ РјР°СЃСЃРёРІР°
+void pop_front_elem(int* mass, int size); //СѓРґР°Р»РµРЅРёРµ РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void pop_front_elems(int* mass, int size, int count);  //СѓРґР°Р»РµРЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//конец массива
-void pop_back_elem(int* mass, int size); //удаление одного элемента
-void pop_back_elems(int* mass, int size, int count);  //удаление нескольких элементов
+//РєРѕРЅРµС† РјР°СЃСЃРёРІР°
+void pop_back_elem(int* mass, int size); //СѓРґР°Р»РµРЅРёРµ РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void pop_back_elems(int* mass, int size, int count);  //СѓРґР°Р»РµРЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//середина массива
-void erase_elem(int* mass, int size, int pos); //удаление одного элемента
-void erase_elems(int* mass, int size, int pos, int count); //удаление нескольких элементов
+//СЃРµСЂРµРґРёРЅР° РјР°СЃСЃРёРІР°
+void erase_elem(int* mass, int size, int pos); //СѓРґР°Р»РµРЅРёРµ РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+void erase_elems(int* mass, int size, int pos, int count); //СѓРґР°Р»РµРЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
 
-//замена
+//Р·Р°РјРµРЅР°
 
-void replace_by_value(int* mass, int size, int value, int new_value); //замена по значению
-void replace_by_index(int* mass, int size, int index, int new_value); //замена по индексу
-void replace_by_indexes(int* mass, int size, int* indexes, int count, int* new_values); //замена элемента по нескольким индексам
+void replace_by_value(int* mass, int size, int value, int new_value); //Р·Р°РјРµРЅР° РїРѕ Р·РЅР°С‡РµРЅРёСЋ
+void replace_by_index(int* mass, int size, int index, int new_value); //Р·Р°РјРµРЅР° РїРѕ РёРЅРґРµРєСЃСѓ
+void replace_by_indexes(int* mass, int size, int* indexes, int count, int* new_values); //Р·Р°РјРµРЅР° СЌР»РµРјРµРЅС‚Р° РїРѕ РЅРµСЃРєРѕР»СЊРєРёРј РёРЅРґРµРєСЃР°Рј
 
-//вывод массива на экран
+//РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
 void print(int* mass, int size, char sep);
 
