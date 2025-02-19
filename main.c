@@ -109,13 +109,13 @@ void start_main_menu(int** mass, int* size, int* deleted_count) {
 }
 
 void get_user_input(int* user, int unit_count) {
-    printf("Ваш выбор: ");
+    printf("Р’Р°С€ РІС‹Р±РѕСЂ: ");
     while (1) {
         scanf_s("%d", user);
         if ((*user >= 0) && (*user <= unit_count)) {
             break;
         }
-        printf("Некорректный ввод, попробуй снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№ СЃРЅРѕРІР°: ");
     }
 }
 int start_init_menu(int** mass, int* size) {
@@ -147,7 +147,7 @@ int start_init_menu(int** mass, int* size) {
         rand_init(*mass, *size, min_val, max_val);
         show_array(*mass, *size);
         while (1) {
-            printf("Перегенерировать? y/n \n");
+            printf("РџРµСЂРµРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ? y/n \n");
             isGeneration = _getch();
             if (isGeneration == 'n') break;
             if (isGeneration == 'y') { shuffle(*mass, *size);  show_array(*mass, *size); continue; }
@@ -207,7 +207,7 @@ int start_insert_menu(int** mass, int* size) {
             break;
         case 3:
             get_pos(&pos, *size);
-            if (mode == ONE_ELEM_MODE) { insert_elem(*mass, *size, new_value, pos - 1); } // чтобы совпадала нумерация
+            if (mode == ONE_ELEM_MODE) { insert_elem(*mass, *size, new_value, pos - 1); } // С‡С‚РѕР±С‹ СЃРѕРІРїР°РґР°Р»Р° РЅСѓРјРµСЂР°С†РёСЏ
             else if (mode == SEVERAL_ELEM_MODE) { insert_elems(*mass, *size, pos - 1, new_values, count);}
             break;
         case 4:
@@ -400,9 +400,9 @@ int start_sort_menu(int** mass, int* size) {
         int time; 
         start_sort(sort_method, *mass, *size, &time, &swps_count, &cmps_count); 
         show_array(*mass, *size); 
-        printf("Время сортировки: %d ms\n", time); 
-        printf("Количество перестановок: %llu\n", swps_count); 
-        printf("Количество сравнений: %llu\n", cmps_count); 
+        printf("Р’СЂРµРјСЏ СЃРѕСЂС‚РёСЂРѕРІРєРё: %d ms\n", time); 
+        printf("РљРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє: %llu\n", swps_count); 
+        printf("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃСЂР°РІРЅРµРЅРёР№: %llu\n", cmps_count); 
         system("pause"); 
         system("cls");
     }
@@ -467,11 +467,11 @@ int start_one_experiment_menu() {
         if (isBack || isExit) break;
         int min_size, step_of_sizes, count_of_experiments;
 
-        printf("Введите стартовый размер массива (>=10): ");
+        printf("Р’РІРµРґРёС‚Рµ СЃС‚Р°СЂС‚РѕРІС‹Р№ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° (>=10): ");
         scanf_s("%d", &min_size);
-        printf("Введите шаг эксперимента (домножающий множитель для размера): ");
+        printf("Р’РІРµРґРёС‚Рµ С€Р°Рі СЌРєСЃРїРµСЂРёРјРµРЅС‚Р° (РґРѕРјРЅРѕР¶Р°СЋС‰РёР№ РјРЅРѕР¶РёС‚РµР»СЊ РґР»СЏ СЂР°Р·РјРµСЂР°): ");
         scanf_s("%d", &step_of_sizes);
-        printf("Введите количество экспериментов: ");
+        printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌРєСЃРїРµСЂРёРјРµРЅС‚РѕРІ: ");
         scanf_s("%d", &count_of_experiments);
 
         start_experiment(sort_method, min_size, step_of_sizes, count_of_experiments);
@@ -485,11 +485,11 @@ int start_all_experiment_menu() {
     system("cls");
     int min_size, step_of_sizes, count_of_experiments;
 
-    printf("Введите стартовый размер массива (>=10): ");
+    printf("Р’РІРµРґРёС‚Рµ СЃС‚Р°СЂС‚РѕРІС‹Р№ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° (>=10): ");
     scanf_s("%d", &min_size);
-    printf("Введите шаг эксперимента (домножающий множитель для размера): ");
+    printf("Р’РІРµРґРёС‚Рµ С€Р°Рі СЌРєСЃРїРµСЂРёРјРµРЅС‚Р° (РґРѕРјРЅРѕР¶Р°СЋС‰РёР№ РјРЅРѕР¶РёС‚РµР»СЊ РґР»СЏ СЂР°Р·РјРµСЂР°): ");
     scanf_s("%d", &step_of_sizes);
-    printf("Введите количество экспериментов: ");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌРєСЃРїРµСЂРёРјРµРЅС‚РѕРІ: ");
     scanf_s("%d", &count_of_experiments);
 
     start_sort_experiments(min_size, step_of_sizes, count_of_experiments);
@@ -499,7 +499,7 @@ int start_all_experiment_menu() {
 void show_found_result(int* mass, int size, int* found) {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    printf("Найдено %d совпадений на следующих позициях: \n{ ", found[0]);
+    printf("РќР°Р№РґРµРЅРѕ %d СЃРѕРІРїР°РґРµРЅРёР№ РЅР° СЃР»РµРґСѓСЋС‰РёС… РїРѕР·РёС†РёСЏС…: \n{ ", found[0]);
     for (int i = 1; i <= found[0]; i++) { 
         printf("%d", found[i] + 1); 
         if (i < found[0]) { 
@@ -509,7 +509,7 @@ void show_found_result(int* mass, int size, int* found) {
     printf(" }\n");
 
     if (found[0] != 0) {
-        printf("Ваш массив (найденные элементы выделены красным цветом): \n");
+        printf("Р’Р°С€ РјР°СЃСЃРёРІ (РЅР°Р№РґРµРЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РІС‹РґРµР»РµРЅС‹ РєСЂР°СЃРЅС‹Рј С†РІРµС‚РѕРј): \n");
         for (int i = 0, j = 1; i < size; i++) {
             if (j <= found[0] && i == found[j]) {
                 SetConsoleTextAttribute(console, 0 * 16 + 4);
@@ -531,47 +531,47 @@ void show_found_result(int* mass, int size, int* found) {
 void start_replace_by_index(int* mass, int size) {
     int index, new_value;
 
-    printf("Введите индекс заменяемого элемента: ");
+    printf("Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ Р·Р°РјРµРЅСЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°: ");
     while (1) {
         scanf_s("%d", &index);
         if (index >= 0 && index < size) break;
-        printf("Некорректный ввод, попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
-    printf("Введите новое значение: ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ");
     scanf_s("%d", &new_value);
     replace_by_index(mass, size, index, new_value);
 }
 void start_replace_by_value(int* mass, int size) {
     int value, new_value;
 
-    printf("Введите значение заменяемого элемента: ");
+    printf("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ Р·Р°РјРµРЅСЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°: ");
     while (1) {
         scanf_s("%d", &value);
         if (value >= 0 && value < size) break;
-        printf("Некорректный ввод, попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
-    printf("Введите новое значение: ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ");
     scanf_s("%d", &new_value);
     replace_by_value(mass, size, value, new_value);
 }
 void start_replace_by_indexes(int* mass, int size, int* new_values) {
     int* indexes = NULL, count = NULL;
 
-    printf("Введите количество заменяемых элементов: ");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РјРµРЅСЏРµРјС‹С… СЌР»РµРјРµРЅС‚РѕРІ: ");
     while (1) {
         scanf_s("%d", &count);
         if (count > 0) break;
-        printf("Некорректный ввод, попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
 
     indexes = (int*)malloc(sizeof(int) * (count));
-    printf("Введите индексы заменяемых элементов: ");
+    printf("Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃС‹ Р·Р°РјРµРЅСЏРµРјС‹С… СЌР»РµРјРµРЅС‚РѕРІ: ");
     for (int i = 0; i < count; i++) {
         scanf_s("%d", &(indexes)[i]);
     }
 
     new_values = (int*)malloc(sizeof(int) * (count));
-    printf("Введите новые значения (через пробел): ");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ (С‡РµСЂРµР· РїСЂРѕР±РµР»): ");
     for (int i = 0; i < count; i++) {
         scanf_s("%d", &(new_values)[i]); 
     }
@@ -579,147 +579,147 @@ void start_replace_by_indexes(int* mass, int size, int* new_values) {
     replace_by_indexes(mass, size, indexes, count, new_values);
 }
 void show_user_init_message() {
-    printf("Введите элементы массива (через пробел): ");
+    printf("Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚С‹ РјР°СЃСЃРёРІР° (С‡РµСЂРµР· РїСЂРѕР±РµР»): ");
 }
 void get_bounds_for_rand_generation(int* min, int* max) {
-    printf("Введите минимум и максимум для генерируемых значений (через пробел): ");
+    printf("Р’РІРµРґРёС‚Рµ РјРёРЅРёРјСѓРј Рё РјР°РєСЃРёРјСѓРј РґР»СЏ РіРµРЅРµСЂРёСЂСѓРµРјС‹С… Р·РЅР°С‡РµРЅРёР№ (С‡РµСЂРµР· РїСЂРѕР±РµР»): ");
     while (1) {
         scanf_s("%d %d", min, max);
         if (*min < *max) {
             break;
         }
-        printf("Некорректный ввод, проверьте порядок аргументов и попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїСЂРѕРІРµСЂСЊС‚Рµ РїРѕСЂСЏРґРѕРє Р°СЂРіСѓРјРµРЅС‚РѕРІ Рё РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
 }
 void get_new_size(int* size) {
-    printf("Введите размер массива: ");
+    printf("Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°: ");
     while (1) {
         scanf_s("%d", size);
         if (*size > 0) {
             break;
         }
-        printf("Некорректный ввод, попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
 }
 void get_value(int* value) {
-    printf("Введите элемент: ");
+    printf("Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚: ");
     scanf_s("%d", value);  
 }
 void get_values(int** values, int* count) {
     if (*values != NULL) {
         free(*values);
     }
-    printf("Введите количество элементов: ");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ");
     while (1) {
         scanf_s("%d", count);
         if (*count > 0) break;
-        printf("Некорректный ввод, попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
     *values = (int*)malloc(sizeof(int) * (*count));
-    printf("Введите элементы (через пробел): ");
+    printf("Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚С‹ (С‡РµСЂРµР· РїСЂРѕР±РµР»): ");
     for (int i = 0; i < *count; i++) {
         scanf_s("%d", &(*values)[i]);
     }
 }
 void count_erase_elems(int* count) {
-    printf("Введите количество элементов: ");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ");
     scanf_s("%d", count);
 }
 void get_pos(int* pos, int size) {
-    printf("Введите позицию: ");
+    printf("Р’РІРµРґРёС‚Рµ РїРѕР·РёС†РёСЋ: ");
     while (1) {
         scanf_s("%d", pos);
         if (*pos >= 0 && *pos < size) {
             break;
         }
-        printf("Некорректный ввод, попробуйте снова: ");
+        printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ");
     }
 }
 void show_array(int* mass, int size) {
-    printf("Ваш массив: { ");
+    printf("Р’Р°С€ РјР°СЃСЃРёРІ: { ");
     print(mass, size, ',');
     printf(" }\n");
 }
 void show_success_message(int* mass, int size) {
-    printf("Успех! Итоговый массив: { ");
+    printf("РЈСЃРїРµС…! РС‚РѕРіРѕРІС‹Р№ РјР°СЃСЃРёРІ: { ");
     print(mass, size, ',');
     printf(" } \n");
     system("pause"); 
     system("cls"); 
 }
 void show_main_menu() {
-    printf("ГЛАВНОЕ МЕНЮ\n\n");
-    printf("\t1. Создать массив \n");
-    printf("\t2. Вставка \n");
-    printf("\t3. Поиск \n");
-    printf("\t4. Удаление \n");
-    printf("\t5. Замена \n");
-    printf("\t6. Перемешать \n");
-    printf("\t7. Отсортировать \n");
-    printf("\t8. Провести эксперимент \n");
-    printf("\t0. Выход \n\n");
+    printf("Р“Р›РђР’РќРћР• РњР•РќР®\n\n");
+    printf("\t1. РЎРѕР·РґР°С‚СЊ РјР°СЃСЃРёРІ \n");
+    printf("\t2. Р’СЃС‚Р°РІРєР° \n");
+    printf("\t3. РџРѕРёСЃРє \n");
+    printf("\t4. РЈРґР°Р»РµРЅРёРµ \n");
+    printf("\t5. Р—Р°РјРµРЅР° \n");
+    printf("\t6. РџРµСЂРµРјРµС€Р°С‚СЊ \n");
+    printf("\t7. РћС‚СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ \n");
+    printf("\t8. РџСЂРѕРІРµСЃС‚Рё СЌРєСЃРїРµСЂРёРјРµРЅС‚ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_init_menu() {
-    printf("ВЫБОР СПОСОБА ЗАПОЛНЕНИЯ\n\n");
-    printf("\t1. Тривиальное заполнение \n");
-    printf("\t2. Ручной ввод \n");
-    printf("\t3. Случайное заполнение \n");
-    printf("\t4. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  РЎРџРћРЎРћР‘Рђ Р—РђРџРћР›РќР•РќРРЇ\n\n");
+    printf("\t1. РўСЂРёРІРёР°Р»СЊРЅРѕРµ Р·Р°РїРѕР»РЅРµРЅРёРµ \n");
+    printf("\t2. Р СѓС‡РЅРѕР№ РІРІРѕРґ \n");
+    printf("\t3. РЎР»СѓС‡Р°Р№РЅРѕРµ Р·Р°РїРѕР»РЅРµРЅРёРµ \n");
+    printf("\t4. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_insert_menu() {
-    printf("ВЫБОР СПОСОБА ВСТАВКИ\n\n");
-    printf("\t1. В начало массива \n");
-    printf("\t2. В конец массива \n");
-    printf("\t3. В середину массива \n");
-    printf("\t4. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  РЎРџРћРЎРћР‘Рђ Р’РЎРўРђР’РљР\n\n");
+    printf("\t1. Р’ РЅР°С‡Р°Р»Рѕ РјР°СЃСЃРёРІР° \n");
+    printf("\t2. Р’ РєРѕРЅРµС† РјР°СЃСЃРёРІР° \n");
+    printf("\t3. Р’ СЃРµСЂРµРґРёРЅСѓ РјР°СЃСЃРёРІР° \n");
+    printf("\t4. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_erase_menu() {
-    printf("ВЫБОР СПОСОБА УДАЛЕНИЯ\n\n");
-    printf("\t1. Первый элемент массива \n");
-    printf("\t2. Последний элемент массива \n");
-    printf("\t3. Заданный элемент массива \n");
-    printf("\t4. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  РЎРџРћРЎРћР‘Рђ РЈР”РђР›Р•РќРРЇ\n\n");
+    printf("\t1. РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° \n");
+    printf("\t2. РџРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° \n");
+    printf("\t3. Р—Р°РґР°РЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° \n");
+    printf("\t4. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_found_menu() {
-    printf("ВЫБОР СПОСОБА ПОИСКА\n\n");
-    printf("\t1. Первое вхождение \n");
-    printf("\t2. Последнее вхождение \n");
-    printf("\t3. Все вхождения \n");
-    printf("\t4. Все вхождения нескольких элементов\n");
-    printf("\t5. Назад\n");
-    printf("\t0. Выход\n\n");
+    printf("Р’Р«Р‘РћР  РЎРџРћРЎРћР‘Рђ РџРћРРЎРљРђ\n\n");
+    printf("\t1. РџРµСЂРІРѕРµ РІС…РѕР¶РґРµРЅРёРµ \n");
+    printf("\t2. РџРѕСЃР»РµРґРЅРµРµ РІС…РѕР¶РґРµРЅРёРµ \n");
+    printf("\t3. Р’СЃРµ РІС…РѕР¶РґРµРЅРёСЏ \n");
+    printf("\t4. Р’СЃРµ РІС…РѕР¶РґРµРЅРёСЏ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ\n");
+    printf("\t5. РќР°Р·Р°Рґ\n");
+    printf("\t0. Р’С‹С…РѕРґ\n\n");
 }
 void show_replace_menu() {
-    printf("ВЫБОР СПОСОБА ЗАМЕНЫ\n\n");
-    printf("\t1. По значению \n");
-    printf("\t2. По индексу \n");
-    printf("\t3. По индексам \n");
-    printf("\t4. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  РЎРџРћРЎРћР‘Рђ Р—РђРњР•РќР«\n\n");
+    printf("\t1. РџРѕ Р·РЅР°С‡РµРЅРёСЋ \n");
+    printf("\t2. РџРѕ РёРЅРґРµРєСЃСѓ \n");
+    printf("\t3. РџРѕ РёРЅРґРµРєСЃР°Рј \n");
+    printf("\t4. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_sort_menu() {
-    printf("ВЫБОР СПОСОБА СОРТИРОВКИ\n\n");
-    printf("\t1. Пузырьковая \n");
-    printf("\t2. Пузырьковая (модифицированная) \n");
-    printf("\t3. Хоара \n");
-    printf("\t4. Шелла (последовательность Шелла) \n");
-    printf("\t5. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  РЎРџРћРЎРћР‘Рђ РЎРћР РўРР РћР’РљР\n\n");
+    printf("\t1. РџСѓР·С‹СЂСЊРєРѕРІР°СЏ \n");
+    printf("\t2. РџСѓР·С‹СЂСЊРєРѕРІР°СЏ (РјРѕРґРёС„РёС†РёСЂРѕРІР°РЅРЅР°СЏ) \n");
+    printf("\t3. РҐРѕР°СЂР° \n");
+    printf("\t4. РЁРµР»Р»Р° (РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ РЁРµР»Р»Р°) \n");
+    printf("\t5. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_start_experiment_menu() {
-    printf("ВЫБОР РЕЖИМА РАБОТЫ\n\n");
-    printf("\t1. Один эксперимент \n");
-    printf("\t2. Несколько экспериментов \n");
-    printf("\t3. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  Р Р•Р–РРњРђ Р РђР‘РћРўР«\n\n");
+    printf("\t1. РћРґРёРЅ СЌРєСЃРїРµСЂРёРјРµРЅС‚ \n");
+    printf("\t2. РќРµСЃРєРѕР»СЊРєРѕ СЌРєСЃРїРµСЂРёРјРµРЅС‚РѕРІ \n");
+    printf("\t3. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
 void show_mode_menu() {
-    printf("ВЫБОР РЕЖИМА РАБОТЫ\n\n");
-    printf("\t1. Один элемент \n");
-    printf("\t2. Несколько элементов \n");
-    printf("\t3. Назад \n");
-    printf("\t0. Выход \n\n");
+    printf("Р’Р«Р‘РћР  Р Р•Р–РРњРђ Р РђР‘РћРўР«\n\n");
+    printf("\t1. РћРґРёРЅ СЌР»РµРјРµРЅС‚ \n");
+    printf("\t2. РќРµСЃРєРѕР»СЊРєРѕ СЌР»РµРјРµРЅС‚РѕРІ \n");
+    printf("\t3. РќР°Р·Р°Рґ \n");
+    printf("\t0. Р’С‹С…РѕРґ \n\n");
 }
