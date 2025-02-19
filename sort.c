@@ -1,4 +1,4 @@
-//выбор нескольких опорных элементов для хоара (первый, последний, рандомный, из интернета)
+//РІС‹Р±РѕСЂ РЅРµСЃРєРѕР»СЊРєРёС… РѕРїРѕСЂРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РґР»СЏ С…РѕР°СЂР° (РїРµСЂРІС‹Р№, РїРѕСЃР»РµРґРЅРёР№, СЂР°РЅРґРѕРјРЅС‹Р№, РёР· РёРЅС‚РµСЂРЅРµС‚Р°)
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <math.h>
@@ -24,12 +24,12 @@ void shuffle(int* mass, int size) {
 	}
 }
 void start_sort(void(*sort)(int*, int, unsigned long long*, unsigned long long*), int* mass, int size, int* time, unsigned long long* swps, unsigned long long* cmps) {
-	printf("Сортировка началась...\n");
+	printf("РЎРѕСЂС‚РёСЂРѕРІРєР° РЅР°С‡Р°Р»Р°СЃСЊ...\n");
 	clock_t start = clock();
 	sort(mass, size, swps, cmps);
 	clock_t end = clock();
 	*time = (int)(end - start) / (CLOCKS_PER_SEC / 1000);
-	printf("Сортировка закончилась...\n");
+	printf("РЎРѕСЂС‚РёСЂРѕРІРєР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ...\n");
 }
 void bubble_sort(int* mass, int size, unsigned long long* swps, unsigned long long* cmps) { 
 	*swps = 0; *cmps = 0; 
@@ -63,7 +63,7 @@ void hoara_sort_rec(int* mass, int left, int right, unsigned long long* swps, un
 		int l = left;
 		int r = right;
 
-		// Используем медиану для выбора базового значения
+		// РСЃРїРѕР»СЊР·СѓРµРј РјРµРґРёР°РЅСѓ РґР»СЏ РІС‹Р±РѕСЂР° Р±Р°Р·РѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 		int base_value = mass[(left + right) / 2];
 
 		while (l <= r) {
@@ -77,7 +77,7 @@ void hoara_sort_rec(int* mass, int left, int right, unsigned long long* swps, un
 			}
 
 			if (l <= r) {
-				// Размена элементов
+				// Р Р°Р·РјРµРЅР° СЌР»РµРјРµРЅС‚РѕРІ
 				(*swps)++;
 				swap(&mass[l], &mass[r]);
 				l++;
@@ -85,7 +85,7 @@ void hoara_sort_rec(int* mass, int left, int right, unsigned long long* swps, un
 			}
 		}
 
-		// Рекурсивно сортируем подмассивы
+		// Р РµРєСѓСЂСЃРёРІРЅРѕ СЃРѕСЂС‚РёСЂСѓРµРј РїРѕРґРјР°СЃСЃРёРІС‹
 		if (left < r) {
 			hoara_sort_rec(mass, left, r, swps, cmps);
 		}
@@ -101,37 +101,37 @@ void shell_sort(int* mass, int size, unsigned long long* swps, unsigned long lon
 	int i, j, step;
 	int tmp;
 
-	// Инициализация счетчиков
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС‡РµС‚С‡РёРєРѕРІ
 	*swps = 0;
 	*cmps = 0;
 
-	// Начинаем с интервала, равного половине размера массива
+	// РќР°С‡РёРЅР°РµРј СЃ РёРЅС‚РµСЂРІР°Р»Р°, СЂР°РІРЅРѕРіРѕ РїРѕР»РѕРІРёРЅРµ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР°
 	for (step = size / 2; step > 0; step /= 2) {
-		// Сортировка вставками для текущего интервала
+		// РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєР°РјРё РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РёРЅС‚РµСЂРІР°Р»Р°
 		for (i = step; i < size; i++) {
 			tmp = mass[i];
 			for (j = i; j >= step; j -= step) {
-				(*cmps)++; // Увеличиваем счетчик сравнений
+				(*cmps)++; // РЈРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє СЃСЂР°РІРЅРµРЅРёР№
 				if (tmp < mass[j - step]) {
 					mass[j] = mass[j - step];
-					(*swps)++; // Увеличиваем счетчик обменов
+					(*swps)++; // РЈРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє РѕР±РјРµРЅРѕРІ
 				}
 				else {
-					break; // Если порядок правильный, выходим из цикла
+					break; // Р•СЃР»Рё РїРѕСЂСЏРґРѕРє РїСЂР°РІРёР»СЊРЅС‹Р№, РІС‹С…РѕРґРёРј РёР· С†РёРєР»Р°
 				}
 			}
 			mass[j] = tmp;
 			if (j != i) {
-				(*swps)++; // Увеличиваем счетчик обменов, если произошел сдвиг
+				(*swps)++; // РЈРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє РѕР±РјРµРЅРѕРІ, РµСЃР»Рё РїСЂРѕРёР·РѕС€РµР» СЃРґРІРёРі
 			}
 		}
 	}
 }
 void show_sort_result(int* mass, int size, int time, unsigned long long swps_count, unsigned long long cmps_count) {
 	show_array(*mass, size);
-	printf("Время сортировки: %d ms\n", time);
-	printf("Количество перестановок: %llu\n", swps_count);
-	printf("Количество сравнений: %llu\n", cmps_count);
+	printf("Р’СЂРµРјСЏ СЃРѕСЂС‚РёСЂРѕРІРєРё: %d ms\n", time);
+	printf("РљРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє: %llu\n", swps_count);
+	printf("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃСЂР°РІРЅРµРЅРёР№: %llu\n", cmps_count);
 }
 void generate_array(int* array, int size) {
 	for (int i = 0; i < size; i++) {
@@ -149,7 +149,7 @@ int* copy_mass(int* mass, int size) {
 void start_experiment(void(*sort)(int*, int, unsigned long long*, unsigned long long*), int min_size, int step_of_sizes, int count_of_experiments) {
 	unsigned long long** characteristics = (unsigned long long**)malloc(count_of_experiments * sizeof(unsigned long long*));
 	for (int i = 0; i < count_of_experiments; i++) {
-		characteristics[i] = (unsigned long long*)malloc(5 * sizeof(unsigned long long)); // 5 - это количеcтво характеристик
+		characteristics[i] = (unsigned long long*)malloc(5 * sizeof(unsigned long long)); // 5 - СЌС‚Рѕ РєРѕР»РёС‡РµcС‚РІРѕ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
 	}
 	printf(" ================================ EXPERIMENT MODE ================================ \n");
 	for (int i = 1; i <= count_of_experiments; i++) {
@@ -158,7 +158,7 @@ void start_experiment(void(*sort)(int*, int, unsigned long long*, unsigned long 
 	show_table_with_experiments_results(characteristics, min_size, step_of_sizes, count_of_experiments);
 	printf(" ================================================================================= \n");
 	system("pause");
-	// Освобождение памяти
+	// РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
 	for (int i = 0; i < count_of_experiments; i++) { 
 		free(characteristics[i]); 
 	}
@@ -209,7 +209,7 @@ void start_test(int num, void(*sort)(int*, int, unsigned long long*, unsigned lo
 }
  
 void start_sort_experiments(int min_size, int step_of_sizes, int count_of_experiments) {
-	char dir[100] = "C:\\Users\\Владелец\\Documents\\";
+	char dir[100] = "C:\\Users\\Р’Р»Р°РґРµР»РµС†\\Documents\\";
 	char filename_out[100] = "result.txt"; 
 	char filepath_out[200];
 	strcpy_s(filepath_out, sizeof(filepath_out), dir);
@@ -220,17 +220,17 @@ void start_sort_experiments(int min_size, int step_of_sizes, int count_of_experi
 	error = fopen_s(&output_file, filepath_out, "w+");
 	fclose(output_file); 
 
-	// Выделяем память для характеристик
+	// Р’С‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РґР»СЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
 	unsigned long long** characteristics = (unsigned long long**)malloc(count_of_experiments * sizeof(unsigned long long*));
 	for (int i = 0; i < count_of_experiments; i++) {
-		characteristics[i] = (unsigned long long*)malloc(5 * sizeof(unsigned long long)); // 5 - это количество характеристик
+		characteristics[i] = (unsigned long long*)malloc(5 * sizeof(unsigned long long)); // 5 - СЌС‚Рѕ РєРѕР»РёС‡РµСЃС‚РІРѕ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
 	}
 
 	for (int i = 0; i < count_of_experiments; i++) {
 		printf("[TEST_%d      ]", i + 1);
 		printf("[         RUN] \n");
 
-		int size = min_size * (int)pow(step_of_sizes, i); // Приведение к int
+		int size = min_size * (int)pow(step_of_sizes, i); // РџСЂРёРІРµРґРµРЅРёРµ Рє int
 		int* bubble_mass = (int*)malloc(size * sizeof(int));
 		rand_init(bubble_mass, size, 1, size);
 		int* bubble_mod_mass = copy_mass(bubble_mass, size);
@@ -238,13 +238,13 @@ void start_sort_experiments(int min_size, int step_of_sizes, int count_of_experi
 		int* shell_mass = copy_mass(bubble_mass, size);
 		printf("              [      FINISH] \n");
 
-		// Запускаем тесты для каждой сортировки
+		// Р—Р°РїСѓСЃРєР°РµРј С‚РµСЃС‚С‹ РґР»СЏ РєР°Р¶РґРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
 		start_test_all(bubble_sort, bubble_mass, size, characteristics, 0);
 		start_test_all(optimized_bubble_sort, bubble_mod_mass, size, characteristics, 1);
 		start_test_all(hoara_sort, hoara_mass, size, characteristics, 2);
 		start_test_all(shell_sort, shell_mass, size, characteristics, 3);
 
-		// Освобождение памяти для текущего теста
+		// РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ С‚РµРєСѓС‰РµРіРѕ С‚РµСЃС‚Р°
 		free(bubble_mass);
 		free(bubble_mod_mass);
 		free(hoara_mass);
@@ -253,9 +253,9 @@ void start_sort_experiments(int min_size, int step_of_sizes, int count_of_experi
 		printf("[TEST FINISH ]\n");
 	}
 	show_table_with_all_experiments_results(characteristics, min_size, step_of_sizes, count_of_experiments); 
-	printf("Результаты были записаны в result.txt \n");
+	printf("Р РµР·СѓР»СЊС‚Р°С‚С‹ Р±С‹Р»Рё Р·Р°РїРёСЃР°РЅС‹ РІ result.txt \n");
 	system("pause");
-	// Освобождение выделенной памяти для характеристик
+	// РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РІС‹РґРµР»РµРЅРЅРѕР№ РїР°РјСЏС‚Рё РґР»СЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
 	for (int i = 0; i < count_of_experiments; i++) {
 		free(characteristics[i]);
 	}
@@ -287,7 +287,7 @@ void start_test_all(void(*sort)(int*, int, unsigned long long*, unsigned long lo
 	}
 }
 void show_table_with_all_experiments_results(unsigned long long** characteristics, int min_size, int step_of_sizes, int count_of_experiments) {
-	char dir[100] = "C:\\Users\\Владелец\\Documents\\";
+	char dir[100] = "C:\\Users\\Р’Р»Р°РґРµР»РµС†\\Documents\\";
 	char filename_out[100] = "result.txt";
 	char filepath_out[200];
 	strcpy_s(filepath_out, sizeof(filepath_out), dir);
@@ -296,7 +296,7 @@ void show_table_with_all_experiments_results(unsigned long long** characteristic
 	FILE* output_file = NULL;
 	errno_t error;
 
-	error = fopen_s(&output_file, filepath_out, "a+"); // Открываем файл для добавления данных
+	error = fopen_s(&output_file, filepath_out, "a+"); // РћС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РґР°РЅРЅС‹С…
 	if (error != 0) {
 		printf("Error in open of output file. Error code %d\n", error);
 		return;
@@ -304,75 +304,75 @@ void show_table_with_all_experiments_results(unsigned long long** characteristic
 	else {
 		printf("File %s open\n", filepath_out);
 
-		// Запись заголовка для времени
+		// Р—Р°РїРёСЃСЊ Р·Р°РіРѕР»РѕРІРєР° РґР»СЏ РІСЂРµРјРµРЅРё
 		fprintf(output_file, "\t time(ms) \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 		fprintf(output_file, "| test | Bubble sort | Optimized bubble sort | Hoara sort | Shell sort | \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 
-		// Запись времени
+		// Р—Р°РїРёСЃСЊ РІСЂРµРјРµРЅРё
 		for (int i = 0; i < count_of_experiments; i++) {
 			fprintf(output_file, "| %4d | %12llu | %12llu | %12llu | %12llu | \n",
 				i + 1,
-				characteristics[i][1], // Время для Bubble Sort 
-				characteristics[i][2], // Время для Optimized Bubble Sort 
-				characteristics[i][3], // Время для Hoara Sort 
-				characteristics[i][4]); // Время для Shell Sort
+				characteristics[i][1], // Р’СЂРµРјСЏ РґР»СЏ Bubble Sort 
+				characteristics[i][2], // Р’СЂРµРјСЏ РґР»СЏ Optimized Bubble Sort 
+				characteristics[i][3], // Р’СЂРµРјСЏ РґР»СЏ Hoara Sort 
+				characteristics[i][4]); // Р’СЂРµРјСЏ РґР»СЏ Shell Sort
 		}
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n\n");
 
-		// Запись заголовка для обменов
+		// Р—Р°РїРёСЃСЊ Р·Р°РіРѕР»РѕРІРєР° РґР»СЏ РѕР±РјРµРЅРѕРІ
 		fprintf(output_file, "\t swaps \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 		fprintf(output_file, "| test | Bubble sort | Optimized bubble sort | Hoara sort | Shell sort | \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 
-		// Запись количества обменов
+		// Р—Р°РїРёСЃСЊ РєРѕР»РёС‡РµСЃС‚РІР° РѕР±РјРµРЅРѕРІ
 		for (int i = 0; i < count_of_experiments; i++) {
 			fprintf(output_file, "| %4d | %12llu | %12llu | %12llu | %12llu | \n",
 				i + 1,
-				characteristics[i][2], // Обмены для Bubble Sort
-				characteristics[i][3], // Обмены для Optimized Bubble Sort
-				characteristics[i][4], // Обмены для Hoara Sort
-				characteristics[i][5]); // Обмены для Shell Sort
+				characteristics[i][2], // РћР±РјРµРЅС‹ РґР»СЏ Bubble Sort
+				characteristics[i][3], // РћР±РјРµРЅС‹ РґР»СЏ Optimized Bubble Sort
+				characteristics[i][4], // РћР±РјРµРЅС‹ РґР»СЏ Hoara Sort
+				characteristics[i][5]); // РћР±РјРµРЅС‹ РґР»СЏ Shell Sort
 		}
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n\n");
 
-		// Запись заголовка для сравнений
+		// Р—Р°РїРёСЃСЊ Р·Р°РіРѕР»РѕРІРєР° РґР»СЏ СЃСЂР°РІРЅРµРЅРёР№
 		fprintf(output_file, "\t comps \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 		fprintf(output_file, "| test | Bubble sort | Optimized bubble sort | Hoara sort | Shell sort | \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 
-		// Запись количества сравнений
+		// Р—Р°РїРёСЃСЊ РєРѕР»РёС‡РµСЃС‚РІР° СЃСЂР°РІРЅРµРЅРёР№
 		for (int i = 0; i < count_of_experiments; i++) {
 			fprintf(output_file, "| %4d | %12llu | %12llu | %12llu | %12llu | \n",
 				i + 1,
-				characteristics[i][3], // Сравнения для Bubble Sort
-				characteristics[i][4], // Сравнения для Optimized Bubble Sort
-				characteristics[i][5], // Сравнения для Hoara Sort
-				characteristics[i][6]); // Сравнения для Shell Sort
+				characteristics[i][3], // РЎСЂР°РІРЅРµРЅРёСЏ РґР»СЏ Bubble Sort
+				characteristics[i][4], // РЎСЂР°РІРЅРµРЅРёСЏ РґР»СЏ Optimized Bubble Sort
+				characteristics[i][5], // РЎСЂР°РІРЅРµРЅРёСЏ РґР»СЏ Hoara Sort
+				characteristics[i][6]); // РЎСЂР°РІРЅРµРЅРёСЏ РґР»СЏ Shell Sort
 		}
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n\n");
 
-		// Запись заголовка для состояния
+		// Р—Р°РїРёСЃСЊ Р·Р°РіРѕР»РѕРІРєР° РґР»СЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 		fprintf(output_file, "\t state \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 		fprintf(output_file, "| test | Bubble sort | Optimized bubble sort | Hoara sort | Shell sort | \n");
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 
-		// Запись состояния
+		// Р—Р°РїРёСЃСЊ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 		for (int i = 0; i < count_of_experiments; i++) {
 			fprintf(output_file, "| %4d | %12s | %12s | %12s | %12s | \n",
 				i + 1,
-				(characteristics[i][1] ? "SUCCESS" : "ERROR"), // Состояние для Bubble Sort 
-				(characteristics[i][2] ? "SUCCESS" : "ERROR"), // Состояние для Optimized Bubble Sort 
-				(characteristics[i][3] ? "SUCCESS" : "ERROR"), // Состояние для Hoara Sort
-				(characteristics[i][4] ? "SUCCESS" : "ERROR")); // Состояние для Shell Sort
+				(characteristics[i][1] ? "SUCCESS" : "ERROR"), // РЎРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ Bubble Sort 
+				(characteristics[i][2] ? "SUCCESS" : "ERROR"), // РЎРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ Optimized Bubble Sort 
+				(characteristics[i][3] ? "SUCCESS" : "ERROR"), // РЎРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ Hoara Sort
+				(characteristics[i][4] ? "SUCCESS" : "ERROR")); // РЎРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ Shell Sort
 		}
 		fprintf(output_file, "+------+-------------+-----------------------+------------+------------+ \n");
 
-		fclose(output_file); // Закрываем файл
+		fclose(output_file); // Р—Р°РєСЂС‹РІР°РµРј С„Р°Р№Р»
 	}
 }
 
