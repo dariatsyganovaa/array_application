@@ -7,7 +7,7 @@
 
 #define STEP_OF_CAPACITY 15
 
-//выделение памяти
+//РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
 void clear_memory(int* mass) {
 	if (mass != NULL) {
 		free(mass);
@@ -55,7 +55,7 @@ int* reset_memory_for_delete(int* old_mass, int* old_size, int new_size, int* de
 	return old_mass; 
 }
 
-//заполнение массива
+//Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР°
 void default_init(int* mass, int size) {
 	for (int i = 0; i < size; i++) { 
 		mass[i] = i + 1;
@@ -72,7 +72,7 @@ void rand_init(int* mass, int size, int min, int max) {
 	}
 }
 
-//вставка 
+//РІСЃС‚Р°РІРєР° 
 void push_front_elem(int* mass, int size, int value) {
 	for (int i = size - 1; i > 0; i--) {
 		mass[i] = mass[i - 1];
@@ -110,8 +110,8 @@ void insert_elems(int* mass, int size, int pos, int* values, int count) {
 	}
 }
 
-// поиск
-void found_first_elem(int* mass, int size, int value, int* found) { //О(n)
+// РїРѕРёСЃРє
+void found_first_elem(int* mass, int size, int value, int* found) { //Рћ(n)
 	found[0] = 0; 
 	for (int i = 0; i < size; i++) {
 		if (mass[i] == value) {
@@ -149,8 +149,8 @@ void found_elems(int* mass, int size, int* values, int count, int* found) {
 	}
 }
 
-// удаление
-void pop_front_elem(int* mass, int size) { //О(k)
+// СѓРґР°Р»РµРЅРёРµ
+void pop_front_elem(int* mass, int size) { //Рћ(k)
 	int first_not_null = 0;
 	while (mass[first_not_null] == NULL) {
 		first_not_null++; 
@@ -191,7 +191,7 @@ void erase_elems(int* mass, int size, int pos, int count) {
 	}
 }
 
-// замена
+// Р·Р°РјРµРЅР°
 void replace_by_value(int* mass, int size, int value, int new_value) {
 	for (int i = 0; i < size; i++) {
 		if (mass[i] == value) {
@@ -205,7 +205,7 @@ void replace_by_index(int* mass, int size, int index, int new_value) {
 		mass[index] = new_value;
 	}
 	else {
-		printf("Индекс вне диапазона!\n");
+		printf("РРЅРґРµРєСЃ РІРЅРµ РґРёР°РїР°Р·РѕРЅР°!\n");
 	}
 }
 
@@ -218,7 +218,7 @@ void replace_by_indexes(int* mass, int size, int* indexes, int count, int* new_v
 	}
 }
 
-//вывод массива на экран
+//РІС‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ
 void print(int* mass, int size, char sep) {
 	if (mass == NULL || size <= 0) return;
 	if (mass[size - 1] == NULL) {
